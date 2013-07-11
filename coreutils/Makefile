@@ -1,5 +1,5 @@
 
-OBJS := ls
+OBJS := ls dd
 
 all: $(OBJS)
 

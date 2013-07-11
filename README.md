@@ -15,6 +15,10 @@ The various programs are organized in to their particular package.
 For example the 'ls' program is provided by the 'coreutils' package
 so it is placed in to the coreutils/ directory.
 
+    coreutils/
+      ls
+      dd
+
 #COPYRIGHT
 
 Copyright &copy; 2011, Jeremiah Mahler.  All Rights Reserved.<br>

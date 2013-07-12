@@ -1,5 +1,5 @@
 
-OBJS := ls dd cat
+OBJS := ls dd cat touch
 
 all: $(OBJS)
 

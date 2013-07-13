@@ -33,6 +33,6 @@ void psend();
 
 void pproc(char* buf, ssize_t n, struct timeval* tval);
 
-void recvloop();
+void precv();
 
 #endif  /* PING_H */

@@ -3,15 +3,15 @@
 
 #include "ping.h"
 
-#define PDELAY 1
-
 extern pid_t pid;
+int ival = 1;
 
 void sig_alrm()
 {
 	psend();
 
-	alarm(PDELAY);
+	if (ival > 0)
+		alarm(ival);
 
 	return;
 }
@@ -22,9 +22,10 @@ int main(int argc, char* argv[])
 	char* node;
 
 	opterr = 0;
-	while ( (c = getopt(argc, argv, "v")) != -1) {
+	while ( (c = getopt(argc, argv, "i")) != -1) {
 		switch (c) {
-		case 'v':
+		case 'i':
+			ival = atoi(argv[optind]);
 			break;
 		case '?':
 			fprintf(stderr, "unrecognized option: %s\n", argv[optind-1]);
@@ -32,12 +33,12 @@ int main(int argc, char* argv[])
 		}
 	}
 
-	if (optind != (argc - 1)) {
+	if (!(argc >= 2)) {
 		fprintf(stderr, "usage: %s [opts] <host>\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 
-	node = argv[optind];
+	node = argv[argc - 1];
 
 	pid = getpid();
 
@@ -47,7 +48,12 @@ int main(int argc, char* argv[])
 
 	kill(pid, SIGALRM);		/* trigger first send */
 
-	recvloop();
+	while (1) {
+		if (0 == ival)
+			kill(pid, SIGALRM);
+
+		precv();
+	}
 
 	exit(EXIT_SUCCESS);
 }

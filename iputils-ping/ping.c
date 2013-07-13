@@ -142,7 +142,7 @@ void pproc(char* buf, ssize_t len, struct timeval* tvrecv)
 	}
 }
 
-void recvloop()
+void precv()
 {
 	socklen_t len;
 	ssize_t n;
@@ -150,7 +150,7 @@ void recvloop()
 	struct timeval tval;
 	char recvbuf[BUFSIZE];
 
-	while (1) {
+	do {
 		len = ai->ai_addrlen;
 		n = recvfrom(sockfd, recvbuf, sizeof(recvbuf), 0, &sarecv, &len);
 		if (n < 0) {
@@ -164,5 +164,5 @@ void recvloop()
 		gettimeofday(&tval, NULL);
 
 		pproc(recvbuf, n, &tval);
-	}
+	} while (0);
 }

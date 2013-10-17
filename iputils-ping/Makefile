@@ -11,6 +11,8 @@ main.o: main.c
 
 ping: main.o ping.o
 	gcc $^ -o $@
+	sudo chown root ping
+	sudo chmod u+s ping
 
 clean:
 	-rm -f ping.o main.o ping

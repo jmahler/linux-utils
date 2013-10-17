@@ -21,6 +21,12 @@ so it is placed in to the coreutils/ directory.
     coreutils/
       ls
       dd
+      cat
+      rm
+      touch
+
+    iputils-ping/
+      ping
 
 COPYRIGHT
 ---------

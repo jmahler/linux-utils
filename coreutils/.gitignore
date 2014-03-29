@@ -3,6 +3,7 @@ dd
 echo
 false
 ls
+pwd
 rm
 touch
 true

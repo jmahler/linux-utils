@@ -34,6 +34,12 @@ so it is placed in to the `coreutils/` directory.
     iputils-ping/
       ping
 
+AUTHOR
+------
+
+Jeremiah Mahler <jmmahler@gmail.com><br>
+<http://github.com/jmahler>
+
 COPYRIGHT
 ---------
 

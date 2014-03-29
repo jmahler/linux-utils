@@ -1,5 +1,8 @@
-ls
-dd
 cat
-touch
+dd
+echo
+false
+ls
 rm
+touch
+true

@@ -1,7 +1,7 @@
 
-OBJS := ls dd cat touch rm
+OBJS := cat dd echo false ls rm touch true
 
 all: $(OBJS)
 
 %: %.c
-	gcc -Wall -Wextra -O2 $< -o $@
+	gcc -Wall -Wextra $< -o $@

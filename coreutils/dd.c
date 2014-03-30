@@ -8,10 +8,10 @@
 
 #define MAXBS 16384
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
 	int i;
-	char* arg;
+	char *arg;
 	int err = 0;
 	int ifd = STDIN_FILENO;
 	int ofd = STDOUT_FILENO;

@@ -1,10 +1,10 @@
 
 #include <stdio.h>
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
 	int i;
-	char* file;
+	char *file;
 	int ret;
 	char sbuf[256];
 

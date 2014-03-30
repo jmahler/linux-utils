@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <unistd.h>
 
-int main() {
-
+int main()
+{
 	char *wd = NULL;
 
 	wd = getcwd(NULL, 0);

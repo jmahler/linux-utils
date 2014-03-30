@@ -7,11 +7,11 @@
 #include <utime.h>
 #include <errno.h>
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
 	int ret;
 	int i;
-	char* file;
+	char *file;
 
 	if (1 == argc) {
 		printf("%s: missing file operand\n", argv[0]);

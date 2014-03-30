@@ -7,8 +7,8 @@
 #define MAXBUF 4096
 #define MAXFILES 8
 
-int main(int argc, char* argv[]) {
-
+int main(int argc, char *argv[])
+{
 	int err = 0;
 	ssize_t ret;
 	size_t len;
@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
 	int i;
 	int fds[MAXFILES];
 	int nfds;
-	char* arg;
+	char *arg;
 	char errbuf[128];
 
 	nfds = 0;

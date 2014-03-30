@@ -4,7 +4,7 @@
 #include <dirent.h>
 #include <errno.h>
 
-int streql(char* s1, char* s2)
+int streql(char *s1, char *s2)
 {
 	do {
 		if (*s1 == '\0')
@@ -20,17 +20,17 @@ int streql(char* s1, char* s2)
 	return 0;
 }
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
 	int err = 0;
-	char* name;
-	DIR* dir;
-	struct dirent* rdir;
+	char *name;
+	DIR *dir;
+	struct dirent *rdir;
 	char sbuf[256];
-	char* d_name;
+	char *d_name;
 	int all = 0;
 	int i;
-	char* arg;
+	char *arg;
 
 	name = ".";
 	for (i = 1; i < argc; i++) {

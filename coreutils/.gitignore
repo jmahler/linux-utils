@@ -4,6 +4,7 @@ echo
 false
 ls
 mkdir
+mv
 pwd
 rm
 rmdir

@@ -28,6 +28,7 @@ so it is placed in to the `coreutils/` directory.
       ls
       pwd
       rm
+      sleep
       touch
       true
 

@@ -1,5 +1,5 @@
 
-OBJS := cat dd echo false ls pwd rm touch true
+OBJS := cat dd echo false ls pwd rm sleep touch true
 
 all: $(OBJS)
 

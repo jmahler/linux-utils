@@ -26,6 +26,7 @@ so it is placed in to the `coreutils/` directory.
       echo
       false
       ls
+      mkdir
       pwd
       rm
       sleep

@@ -3,6 +3,7 @@ dd
 echo
 false
 ls
+mkdir
 pwd
 rm
 sleep

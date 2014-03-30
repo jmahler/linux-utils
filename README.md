@@ -29,6 +29,7 @@ so it is placed in to the `coreutils/` directory.
       mkdir
       pwd
       rm
+      rmdir
       sleep
       touch
       true

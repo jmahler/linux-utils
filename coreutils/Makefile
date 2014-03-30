@@ -1,5 +1,5 @@
 
-OBJS := cat dd echo false ls mkdir pwd rm sleep touch true
+OBJS := cat dd echo false ls mkdir pwd rm rmdir sleep touch true
 
 all: $(OBJS)
 

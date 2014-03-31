@@ -9,5 +9,6 @@ pwd
 rm
 rmdir
 sleep
+sum
 touch
 true

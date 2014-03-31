@@ -32,6 +32,7 @@ so it is placed in to the `coreutils/` directory.
       rm
       rmdir
       sleep
+      sum
       touch
       true
 

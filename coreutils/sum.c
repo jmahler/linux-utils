@@ -6,6 +6,10 @@
 #include <unistd.h>
 #include <stdint.h>
 
+/* block size for BSD and Sysv checksums */
+#define BS_BSD 1024
+#define BS_SYSV 512
+
 /* rotate right, 16-bit */
 #define ror(x) (x >> 1) + ((x & 1) << 15)
 
@@ -16,6 +20,8 @@ int main(int argc, char *argv[])
 	ssize_t res;
 	uint8_t buf;
 	uint16_t checksum;
+	unsigned int blocks;
+	unsigned int bytes;
 
 	if (argc != 2) {
 		return 1;
@@ -29,6 +35,7 @@ int main(int argc, char *argv[])
 	}
 
 	checksum = 0;
+	bytes = 0;
 	while (1) {
 		res = read(fd, &buf, sizeof(buf));
 		if (0 == res) {
@@ -42,9 +49,12 @@ int main(int argc, char *argv[])
 		/* BSD Checksum */
 		checksum = ror(checksum);
 		checksum += buf;
+
+		bytes++;
 	}
 
-	printf("%05u\n", checksum);
+	blocks = (bytes / BS_BSD) + ((bytes % BS_BSD) ? 1 : 0);
+	printf("%05u  %4.u\n", checksum, blocks);
 
 	return 0;
 }

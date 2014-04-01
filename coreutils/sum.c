@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 			break;
 		} else if (res < 0) {
 			perror("read");
-			return 1;
+			break;
 		}
 
 		/* BSD Checksum */
@@ -52,6 +52,7 @@ int main(int argc, char *argv[])
 
 		bytes++;
 	}
+	close(fd);
 
 	blocks = (bytes / BS_BSD) + ((bytes % BS_BSD) ? 1 : 0);
 	printf("%05u  %4.u\n", checksum, blocks);

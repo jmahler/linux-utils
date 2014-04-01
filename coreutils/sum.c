@@ -10,6 +10,8 @@
 #define BS_BSD 1024
 #define BS_SYSV 512
 
+#define READ_BYTES 4096
+
 /* rotate right, 16-bit */
 #define ror(x) (x >> 1) + ((x & 1) << 15)
 
@@ -17,11 +19,12 @@ int main(int argc, char *argv[])
 {
 	char *file;
 	int fd;
-	ssize_t res;
-	uint8_t buf;
+	ssize_t size;
+	uint8_t buf[READ_BYTES];
 	uint16_t checksum;
 	unsigned int blocks;
 	unsigned int bytes;
+	unsigned int i;
 
 	if (argc != 2) {
 		return 1;
@@ -37,20 +40,22 @@ int main(int argc, char *argv[])
 	checksum = 0;
 	bytes = 0;
 	while (1) {
-		res = read(fd, &buf, sizeof(buf));
-		if (0 == res) {
+		size = read(fd, buf, sizeof(buf));
+		if (0 == size) {
 			// EOF
 			break;
-		} else if (res < 0) {
+		} else if (size < 0) {
 			perror("read");
 			break;
 		}
 
-		/* BSD Checksum */
-		checksum = ror(checksum);
-		checksum += buf;
+		for (i = 0; i < size; i++) {
+			/* BSD Checksum */
+			checksum = ror(checksum);
+			checksum += buf[i];
+		}
 
-		bytes++;
+		bytes += size;
 	}
 	close(fd);
 

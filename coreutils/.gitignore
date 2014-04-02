@@ -1,6 +1,7 @@
 cat
 dd
 echo
+env
 false
 ls
 mkdir

@@ -24,6 +24,7 @@ so it is placed in to the `coreutils/` directory.
       cat
       dd
       echo
+      env
       false
       ls
       mv

@@ -21,10 +21,12 @@ int main(int argc, char *argv[])
 	int fd;
 	ssize_t size;
 	uint8_t buf[READ_BYTES];
-	uint16_t checksum;
+	uint16_t checksum16;
+	uint32_t checksum32;
 	unsigned int blocks;
 	unsigned int bytes;
 	unsigned int i;
+	int bsd_sum = 1;
 
 	if (argc != 2) {
 		return 1;
@@ -37,7 +39,8 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
-	checksum = 0;
+	checksum16 = 0;
+	checksum32 = 0;
 	bytes = 0;
 	while (1) {
 		size = read(fd, buf, sizeof(buf));
@@ -50,17 +53,29 @@ int main(int argc, char *argv[])
 		}
 
 		for (i = 0; i < size; i++) {
-			/* BSD Checksum */
-			checksum = ror(checksum);
-			checksum += buf[i];
+			if (bsd_sum) {
+				checksum16 = ror(checksum16);
+				checksum16 += buf[i];
+			} else {
+				checksum32 += buf[i];
+			}
+		}
+
+		if (! bsd_sum) {
+			checksum16 = (checksum32 & 0xffff) + (checksum32 >> 16);
 		}
 
 		bytes += size;
 	}
 	close(fd);
 
-	blocks = (bytes / BS_BSD) + ((bytes % BS_BSD) ? 1 : 0);
-	printf("%05u  %4.u\n", checksum, blocks);
+	if (bsd_sum) {
+		blocks = (bytes / BS_BSD) + ((bytes % BS_BSD) ? 1 : 0);
+		printf("%05u  %4.u\n", checksum16, blocks);
+	} else {
+		blocks = (bytes / BS_SYSV) + ((bytes % BS_SYSV) ? 1 : 0);
+		printf("%u %u\n", checksum16, blocks);
+	}
 
 	return 0;
 }

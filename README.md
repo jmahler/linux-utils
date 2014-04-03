@@ -36,6 +36,7 @@ so it is placed in to the `coreutils/` directory.
       sum
       touch
       true
+      yes
 
     iputils-ping/
       ping

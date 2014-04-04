@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
 		printf("%05u  %4.u\n", checksum16, blocks);
 	} else {
 		blocks = (bytes / BS_SYSV) + ((bytes % BS_SYSV) ? 1 : 0);
-		printf("%u %u\n", checksum16, blocks);
+		printf("%u %u %s\n", checksum16, blocks, file);
 	}
 
 	return 0;

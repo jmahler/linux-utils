@@ -15,6 +15,10 @@
 /* rotate right, 16-bit */
 #define ror(x) (x >> 1) + ((x & 1) << 15)
 
+void usage(char *proc) {
+	fprintf(stderr, "usage: %s [-s] <file>\n", proc);
+}
+
 int main(int argc, char *argv[])
 {
 	char *file;
@@ -27,11 +31,25 @@ int main(int argc, char *argv[])
 	unsigned int bytes;
 	unsigned int i;
 	int bsd_sum = 1;
+	int opt;
+	extern int optind;
 
-	if (argc != 2) {
+	while ((opt = getopt(argc, argv, "s")) != -1) {
+		switch (opt) {
+		case 's':
+			bsd_sum = 0;  /* sysv sum */
+			break;
+		default:
+			usage(argv[0]);
+			return 1;
+		}
+	}
+	if (optind < argc) {
+		file = argv[optind];
+	} else {
+		usage(argv[0]);
 		return 1;
 	}
-	file = argv[1];
 
 	fd = open(file, O_RDONLY);
 	if (-1 == fd) {

@@ -2,6 +2,7 @@ cat
 dd
 echo
 env
+factor
 false
 ls
 mkdir

@@ -25,6 +25,7 @@ so it is placed in to the `coreutils/` directory.
       dd
       echo
       env
+      factor
       false
       ls
       mv

@@ -27,6 +27,7 @@ so it is placed in to the `coreutils/` directory.
       env
       factor
       false
+      kill
       ls
       mv
       mkdir

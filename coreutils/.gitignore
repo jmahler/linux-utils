@@ -4,6 +4,7 @@ echo
 env
 factor
 false
+kill
 ls
 mkdir
 mv

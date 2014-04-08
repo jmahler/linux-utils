@@ -39,6 +39,7 @@ so it is placed in to the `coreutils/` directory.
       touch
       true
       yes
+      wc
 
     iputils-ping/
       ping

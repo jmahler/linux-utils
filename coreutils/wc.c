@@ -14,9 +14,10 @@ int main(int argc, char *argv[])
 	int fd = NULL;
 	uint8_t bytes[MAX_BYTES];
 	ssize_t bytes_read;
-	int i;
+	int i, j;
 
 	unsigned int num_bytes;
+	unsigned int num_lines;
 
 	if (argc < 2) {
 		printf("usage: %s [FILE]...\n", argv[0]);
@@ -32,6 +33,7 @@ int main(int argc, char *argv[])
 			return EXIT_FAILURE;
 		}
 
+		num_lines = 0;
 		num_bytes = 0;
 		while (1) {
 			bytes_read = read(fd, &bytes, MAX_BYTES);
@@ -42,13 +44,17 @@ int main(int argc, char *argv[])
 			} else if (0 == bytes_read) {
 				break;
 			}
+			for (j = 0; j < bytes_read; j++) {
+				if ('\n' == bytes[j])
+					num_lines++;
+			}
 
 			num_bytes += bytes_read;
 		}
 
 		close(fd);
 
-		printf("%5d %s\n", num_bytes, argv[i]);
+		printf("%4d  %5d %s\n", num_lines, num_bytes, argv[i]);
 	}
 
 	return EXIT_SUCCESS;

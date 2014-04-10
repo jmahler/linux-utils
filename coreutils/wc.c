@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 				if ('\n' == bytes[j])
 					num_lines++;
 
-				if (' ' == bytes[j] || '\n' == bytes[j]) {
+				if (' ' == bytes[j] || '\n' == bytes[j] || '\t' == bytes[j]) {
 					was_space = 1;
 				} else {
 					if (was_space)

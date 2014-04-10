@@ -80,7 +80,9 @@ int main(int argc, char *argv[])
 		tot_words += num_words;
 		tot_bytes += num_bytes;
 	}
-	printf("%4d  %4d  %5d  %s\n", tot_lines, tot_words, tot_bytes, "total");
+
+	if (argc > 2)
+		printf("%4d  %4d  %5d  %s\n", tot_lines, tot_words, tot_bytes, "total");
 
 	return EXIT_SUCCESS;
 }

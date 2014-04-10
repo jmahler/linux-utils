@@ -17,7 +17,10 @@ int main(int argc, char *argv[])
 	int i, j;
 
 	unsigned int num_bytes;
+	unsigned int num_words;
 	unsigned int num_lines;
+
+	unsigned char was_space;
 
 	if (argc < 2) {
 		printf("usage: %s [FILE]...\n", argv[0]);
@@ -34,7 +37,9 @@ int main(int argc, char *argv[])
 		}
 
 		num_lines = 0;
+		num_words = 0;
 		num_bytes = 0;
+		was_space = 1;
 		while (1) {
 			bytes_read = read(fd, &bytes, MAX_BYTES);
 			if (-1 == bytes_read) {
@@ -47,6 +52,14 @@ int main(int argc, char *argv[])
 			for (j = 0; j < bytes_read; j++) {
 				if ('\n' == bytes[j])
 					num_lines++;
+
+				if (' ' == bytes[j] || '\n' == bytes[j]) {
+					was_space = 1;
+				} else {
+					if (was_space)
+						num_words++;
+					was_space = 0;
+				}
 			}
 
 			num_bytes += bytes_read;
@@ -54,7 +67,7 @@ int main(int argc, char *argv[])
 
 		close(fd);
 
-		printf("%4d  %5d %s\n", num_lines, num_bytes, argv[i]);
+		printf("%4d  %4d  %5d  %s\n", num_lines, num_words, num_bytes, argv[i]);
 	}
 
 	return EXIT_SUCCESS;

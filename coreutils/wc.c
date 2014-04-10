@@ -22,11 +22,18 @@ int main(int argc, char *argv[])
 
 	unsigned char was_space;
 
+	unsigned int tot_bytes;
+	unsigned int tot_words;
+	unsigned int tot_lines;
+
 	if (argc < 2) {
 		printf("usage: %s [FILE]...\n", argv[0]);
 		return EXIT_FAILURE;
 	}
 
+	tot_bytes = 0;
+	tot_words = 0;
+	tot_lines = 0;
 	for (i = 1; i < argc; i++) {
 
 		fd = open(argv[i], O_RDONLY);
@@ -68,7 +75,12 @@ int main(int argc, char *argv[])
 		close(fd);
 
 		printf("%4d  %4d  %5d  %s\n", num_lines, num_words, num_bytes, argv[i]);
+
+		tot_lines += num_lines;
+		tot_words += num_words;
+		tot_bytes += num_bytes;
 	}
+	printf("%4d  %4d  %5d  %s\n", tot_lines, tot_words, tot_bytes, "total");
 
 	return EXIT_SUCCESS;
 }

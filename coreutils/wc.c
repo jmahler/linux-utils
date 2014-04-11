@@ -1,6 +1,7 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -50,6 +51,9 @@ int main(int argc, char *argv[])
 		while (1) {
 			bytes_read = read(fd, &bytes, MAX_BYTES);
 			if (-1 == bytes_read) {
+				if (errno == EINTR)
+					continue;
+
 				perror("open");
 				close(fd);
 				return EXIT_FAILURE;

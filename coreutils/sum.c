@@ -1,6 +1,7 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -65,7 +66,10 @@ int main(int argc, char *argv[])
 		if (0 == size) {
 			// EOF
 			break;
-		} else if (size < 0) {
+		} else if (-1 == size) {
+			if (errno == EINTR)
+				continue;
+
 			perror("read");
 			break;
 		}

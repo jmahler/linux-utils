@@ -7,18 +7,18 @@ linux-utils - standard Linux utilities rewritten from scratch
 DESCRIPTION
 -----------
 
-A good way to learn about Linux is to write the standard
-system utilities from scratch.  Programs such as `ls`, `cat`,
-`dd` and others.  These programs are simple and have less
-functionality compared to the original programs but they
-nonetheless accomplish the same core functionality.
+A fun way to learn about Linux system programming is to write the
+standard system utilities from scratch.  Programs such as `ls`, `cat`,
+`dd` and others.  These implementations are much simpler than the
+originals.  But it is interesting nonetheless to see how these can
+be implemented.
 
 INDEX
 -----
 
-The various programs are organized in to their particular package.
-For example the `ls` program is provided by the `coreutils` package
-so it is placed in to the `coreutils/` directory.
+The programs are grouped in to a directory named after the package
+that it was originally provided by.  For example, the programs
+from the `coreutils` package are grouped in the `coreutils/` directory.
 
     coreutils/
       cat

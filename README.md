@@ -22,6 +22,7 @@ from the `coreutils` package are grouped in the `coreutils/` directory.
 
     coreutils/
       cat
+      chmod
       dd
       echo
       env

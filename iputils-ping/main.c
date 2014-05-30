@@ -20,6 +20,7 @@ int main(int argc, char* argv[])
 {
 	int c;
 	char* node;
+	struct sigaction sa;
 
 	opterr = 0;
 	while ( (c = getopt(argc, argv, "i")) != -1) {
@@ -44,7 +45,9 @@ int main(int argc, char* argv[])
 
 	pinit(node);
 
-	signal(SIGALRM, sig_alrm);
+	memset(&sa, 0, sizeof(sa));
+	sa.sa_handler = sig_alrm;
+	sigaction(SIGALRM, &sa, 0);
 
 	kill(pid, SIGALRM);		/* trigger first send */
 

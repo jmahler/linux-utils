@@ -11,6 +11,8 @@ main.o: main.c
 
 ping: main.o ping.o
 	gcc $^ -o $@
+
+setuid: ping
 	sudo chown root ping
 	sudo chmod u+s ping
 

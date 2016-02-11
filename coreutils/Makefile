@@ -6,3 +6,6 @@ all: $(OBJS)
 
 %: %.c
 	gcc -Wall -Wextra $< -o $@
+
+clean:
+	-rm -f $(OBJS)

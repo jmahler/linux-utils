@@ -5,6 +5,7 @@
 int main(int argc, char *argv[]) {
 
 	unsigned long start, end;
+	unsigned long i;
 
 	if (argc != 3) {
 		fprintf(stderr, "usage: %s <start> <end>\n", argv[0]);
@@ -13,7 +14,7 @@ int main(int argc, char *argv[]) {
 	start = atoll(argv[1]);
 	end = atoll(argv[2]);
 
-	for (unsigned long i = start; i <= end; i++) {
+	for (i = start; i <= end; i++) {
 		printf("%lu\n", i);
 	}
 
